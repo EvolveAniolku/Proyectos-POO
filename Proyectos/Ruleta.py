@@ -7,9 +7,7 @@ INTEGRANTES
 - Brayan David Garces Quintero
 """
 import random
-## Libreria para el uso de numeros aleatorios
-
-Rango_de_numeros=list(range(0,37))  
+## Libreria para el uso de numeros aleatorios 
 
 tablero_de_ruleta_color= {
     0: 'Verde',
@@ -26,10 +24,6 @@ tablero_de_ruleta_color= {
     31: 'Negro', 32: 'Negro', 33: 'Negro',
     34: 'Rojo', 35: 'Negro', 36: 'Rojo'
     }
+## Seccionamos los colores individualmente los colores
                          
-
-
-
-
-
-
+numeros_Max = list(range(0, 37))
