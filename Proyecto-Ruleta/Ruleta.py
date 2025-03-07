@@ -6,6 +6,6 @@ def giro_ruleta ()
     return (giro)
 
 def juego ()
-print('Bienvenido a la Simulacion de una Ruleta')
-numero_apostado = input(int('Por favor, ingrese el numero por el cual desea apostar: '))
+    print('Bienvenido a la Simulacion de una Ruleta')
+    numero_apostado = input(int('Por favor, ingrese el numero por el cual desea apostar: '))
 
