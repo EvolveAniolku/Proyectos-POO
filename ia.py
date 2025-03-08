@@ -28,10 +28,11 @@ def jugar():
         print("3️⃣ Par o Impar (paga 1:1)")
         print("4️⃣ Primera Docena (1-12) (paga 2:1)")
         print("5️⃣ Segunda Docena (13-24) (paga 2:1)")
+        print("6️⃣ Tercera Docena (25-36) (paga 2:1)")
         print(f"\n💰 Tienes {dinero} monedas. 💰")
 
         try:
-            opcion = int(input("Elige una opción (1-5) o 0 para salir: "))
+            opcion = int(input("Elige una opción (1-6) o 0 para salir: "))
             if opcion == 0:
                 print("👋 ¡Gracias por jugar!")
                 break
@@ -56,6 +57,8 @@ def jugar():
                 apuesta = "primera_docena"
             elif opcion == 5:
                 apuesta = "segunda_docena"
+            elif opcion == 6:
+                apuesta = "tercera_docena"
             else:
                 print("⚠️ Opción no válida.")
                 continue
@@ -91,6 +94,10 @@ def jugar():
                 ganancias = monto * 2
                 dinero += ganancias
                 print(f"💰 ¡Ganaste {ganancias} monedas en la Segunda Docena! 💰")
+            elif opcion == 6 and 25 <= numero <= 36:
+                ganancias = monto * 2
+                dinero += ganancias
+                print(f"💰 ¡Ganaste {ganancias} monedas en la Tercera Docena! 💰")
             else:
                 dinero -= monto
                 print("❌ Perdiste tu apuesta.")
@@ -102,5 +109,4 @@ def jugar():
         except ValueError:
             print("⚠️ Entrada inválida. Intenta de nuevo.")
 
-# Ejecutar el juego
 jugar()
