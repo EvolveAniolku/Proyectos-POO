@@ -18,75 +18,89 @@ def girar_ruleta():
 def jugar():
     dinero = 100  # Dinero inicial
 
-    print("Bienvenido a la ruleta de casino")
-    print("Tienes 100 monedas para apostar.")
+    print("🎰 Bienvenido a la ruleta de casino 🎰")
+    print("💵 Tienes 100 monedas para apostar. 💵")
 
     while dinero > 0:
-        print("\nOpciones de apuesta:")
-        print("1. Número específico (paga 35:1)")
-        print("2. Rojo o Negro (paga 1:1)")
-        print("3. Par o Impar (paga 1:1)")
-        print(f"\nTienes {dinero} monedas.")
-        
+        print("\n🎲 Opciones de apuesta:")
+        print("1️⃣ Número específico (paga 35:1)")
+        print("2️⃣ Rojo o Negro (paga 1:1)")
+        print("3️⃣ Par o Impar (paga 1:1)")
+        print("4️⃣ Primera Docena (1-12) (paga 2:1)")
+        print("5️⃣ Segunda Docena (13-24) (paga 2:1)")
+        print(f"\n💰 Tienes {dinero} monedas. 💰")
+
         try:
-            opcion = int(input("Elige una opción (1/2/3) o 0 para salir: "))
+            opcion = int(input("Elige una opción (1-5) o 0 para salir: "))
             if opcion == 0:
-                print("¡Gracias por jugar!")
+                print("👋 ¡Gracias por jugar!")
                 break
 
             apuesta = None
             if opcion == 1:
-                apuesta = int(input("Elige un número del 0 al 36: "))
+                apuesta = int(input("🎲 Elige un número del 0 al 36: "))
                 if apuesta < 0 or apuesta > 36:
-                    print("Número fuera de rango.")
+                    print("⚠️ Número fuera de rango.")
                     continue
             elif opcion == 2:
-                apuesta = input("Elige 'rojo' o 'negro': ").lower()
+                apuesta = input("🔴⚫ Elige 'rojo' o 'negro': ").lower()
                 if apuesta not in ["rojo", "negro"]:
-                    print("Opción inválida.")
+                    print("⚠️ Opción inválida.")
                     continue
             elif opcion == 3:
-                apuesta = input("Elige 'par' o 'impar': ").lower()
+                apuesta = input("📊 Elige 'par' o 'impar': ").lower()
                 if apuesta not in ["par", "impar"]:
-                    print("Opción inválida.")
+                    print("⚠️ Opción inválida.")
                     continue
+            elif opcion == 4:
+                apuesta = "primera_docena"
+            elif opcion == 5:
+                apuesta = "segunda_docena"
             else:
-                print("Opción no válida.")
+                print("⚠️ Opción no válida.")
                 continue
 
-            monto = int(input(f"¿Cuánto deseas apostar? (Máx: {dinero}): "))
+            monto = int(input(f"💸 ¿Cuánto deseas apostar? (Máx: {dinero}): "))
             if monto > dinero or monto <= 0:
-                print("Apuesta inválida.")
+                print("⚠️ Apuesta inválida.")
                 continue
             
-            print("Girando la ruleta...")
+            print("🎡 Girando la ruleta...")
             numero, color = girar_ruleta()
-            print(f"La bola cayó en {numero} ({color})")
+            print(f"🎉 La bola cayó en {numero} ({color}) 🎉")
 
             # Verificar la apuesta y calcular ganancias
             if opcion == 1 and apuesta == numero:
                 ganancias = monto * 35
                 dinero += ganancias
-                print(f"¡Ganaste {ganancias} monedas!")
+                print(f"💰 ¡Ganaste {ganancias} monedas! 💰")
             elif opcion == 2 and apuesta == color:
                 ganancias = monto
                 dinero += ganancias
-                print(f"¡Ganaste {ganancias} monedas!")
+                print(f"💰 ¡Ganaste {ganancias} monedas! 💰")
             elif opcion == 3 and ((apuesta == "par" and numero % 2 == 0 and numero != 0) or 
                                    (apuesta == "impar" and numero % 2 == 1)):
                 ganancias = monto
                 dinero += ganancias
-                print(f"¡Ganaste {ganancias} monedas!")
+                print(f"💰 ¡Ganaste {ganancias} monedas! 💰")
+            elif opcion == 4 and 1 <= numero <= 12:
+                ganancias = monto * 2
+                dinero += ganancias
+                print(f"💰 ¡Ganaste {ganancias} monedas en la Primera Docena! 💰")
+            elif opcion == 5 and 13 <= numero <= 24:
+                ganancias = monto * 2
+                dinero += ganancias
+                print(f"💰 ¡Ganaste {ganancias} monedas en la Segunda Docena! 💰")
             else:
                 dinero -= monto
-                print("Perdiste tu apuesta.")
+                print("❌ Perdiste tu apuesta.")
 
             if dinero == 0:
-                print("Te has quedado sin dinero. ¡Juego terminado!")
+                print("💸 Te has quedado sin dinero. ¡Juego terminado! 💸")
                 break
 
         except ValueError:
-            print("Entrada inválida. Intenta de nuevo.")
+            print("⚠️ Entrada inválida. Intenta de nuevo.")
 
 # Ejecutar el juego
 jugar()
