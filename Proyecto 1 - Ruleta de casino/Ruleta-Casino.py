@@ -18,7 +18,7 @@ dinero_ganado = 0
 # Se define el mecanismo aleatorio para la ruleta usando la funcion random.randit y retornamos las variables
 # numero y color.
 def girar_ruleta():
-    numero = random.randit(0,36)
+    numero = random.randint(0,36)
     color = ruleta[numero]
     return numero, color
 
@@ -48,10 +48,10 @@ def jugar():
         print("1️⃣ Número específico (Ganancia: 36:1) Numero (0) (Ganancia: 100:1) ")
         print("2️⃣ Rojo o Negro (Ganancia: 1:1)")
         print("3️⃣ Par o Impar (Ganancia: 1:1)")
-        print("4️⃣ Primera Seccion (1-12) (Ganancia: 2:1)")
-        print("5️⃣ Segunda Seccion (13-24) (Ganancia: 2:1)")
-        print("6️⃣ Tercera Seccion (25-36) (Ganancia: 2:1)")
-        print("7️⃣Historial y promedio")
+        print("4️⃣ Primera Seccion (1-12) (Ganancia: 5:1)")
+        print("5️⃣ Segunda Seccion (13-24) (Ganancia: 5:1)")
+        print("6️⃣ Tercera Seccion (25-36) (Ganancia: 5:1)")
+        print("7️⃣ Historial y promedio")
         print(f"\n💰 Tienes {dinero} monedas. 💰")
 
         try:
@@ -100,7 +100,8 @@ def jugar():
              print(".", end="", flush=True)
             
             numero, color = girar_ruleta()
-            print(f"🎉 La bola cayó en {numero} ({color}) 🎉")
+            print(f"🎉 La bola cayó en {numero} ({color}) 🎉",flush=True)
+            time.sleep(2)
 
             # Verificar la apuesta y calcular ganancias
             if opcion == 1 and apuesta == numero:
@@ -114,47 +115,59 @@ def jugar():
                  dinero += ganancias
                  contador_victorias +=1
                  dinero_ganado =+ ganancias
-                print(f"💰 ¡Ganaste {ganancias} monedas! 💰")
+                print(f"💰 ¡Ganaste {ganancias} monedas! 💰",flush=True)
+                time.sleep(2)
                 
             elif opcion == 2 and apuesta == color:
                 ganancias = monto
                 dinero += ganancias
                 contador_victorias +=1
                 dinero_ganado =+ ganancias
-                print(f"💰 ¡Ganaste {ganancias} monedas! 💰")
+                print(f"💰 ¡Ganaste {ganancias} monedas! 💰",flush=True)
+                time.sleep(2)
+                
             elif opcion == 3 and ((apuesta == "par" and numero % 2 == 0 and numero != 0) or 
                                    (apuesta == "impar" and numero % 2 == 1)):
                 ganancias = monto
                 dinero += ganancias
                 contador_victorias +=1
                 dinero_ganado =+ ganancias
-                print(f"💰 ¡Ganaste {ganancias} monedas! 💰")
+                print(f"💰 ¡Ganaste {ganancias} monedas! 💰",flush=True)
+                time.sleep(2)
+                
             elif opcion == 4 and 1 <= numero <= 12:
                 ganancias = monto * 5
                 contador_victorias +=1
                 dinero_ganado =+ ganancias
                 dinero += ganancias
-                print(f"💰 ¡Ganaste {ganancias} monedas en la Primera Docena! 💰")
+                print(f"💰 ¡Ganaste {ganancias} monedas en la Primera Docena! 💰",flush=True)
+                time.sleep(2)
+                
             elif opcion == 5 and 13 <= numero <= 24:
                 ganancias = monto * 5
                 contador_victorias +=1
                 dinero += ganancias
                 dinero_ganado =+ ganancias
-                print(f"💰 ¡Ganaste {ganancias} monedas en la Segunda Docena! 💰")
+                print(f"💰 ¡Ganaste {ganancias} monedas en la Segunda Docena! 💰",flush=True)
+                time.sleep(2)
+                
             elif opcion == 6 and 25 <= numero <= 36:
                 ganancias = monto * 5
                 contador_victorias +=1
                 dinero += ganancias
                 dinero_ganado =+ ganancias
-                print(f"💰 ¡Ganaste {ganancias} monedas en la Tercera Docena! 💰")
+                print(f"💰 ¡Ganaste {ganancias} monedas en la Tercera Docena! 💰",flush=True)
+                time.sleep(2)
             
             else:
                 dinero -= monto
                 contador_derrotas =+1
-                print("❌ Perdiste tu apuesta.")
+                print("❌ Perdiste tu apuesta.",flush=True)
+                time.sleep(2)
 
             if dinero == 0:
-                print("💸 Te has quedado sin dinero. ¡Juego terminado! 💸")
+                print("💸 Te has quedado sin dinero. ¡Juego terminado! 💸",flush=True)
+                time.sleep(2)
                 break
 
         except ValueError:
