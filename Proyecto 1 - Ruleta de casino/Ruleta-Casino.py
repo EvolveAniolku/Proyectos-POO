@@ -1,4 +1,5 @@
 import random
+import time
 
 # Se definen los colores de la ruleta segun su numero
 ruleta = {
@@ -17,11 +18,11 @@ dinero_ganado = 0
 # Se define el mecanismo aleatorio para la ruleta usando la funcion random.randit y retornamos las variables
 # numero y color.
 def girar_ruleta():
-    numero = random.randint(0, 36)
+    numero = random.randit(0,36)
     color = ruleta[numero]
     return numero, color
 
-#
+
 def historial():
     if contador_derrotas > 0:
         promedio_de_victorias = (contador_victorias / contador_derrotas) * 100
@@ -93,7 +94,11 @@ def jugar():
                 print("⚠️ Apuesta inválida.")
                 continue
             
-            print("🎡 Girando la ruleta...")
+            print("🎡 Girando la ruleta", end="", flush=True)
+            for _ in range(4):
+             time.sleep(1)
+             print(".", end="", flush=True)
+            
             numero, color = girar_ruleta()
             print(f"🎉 La bola cayó en {numero} ({color}) 🎉")
 
@@ -101,12 +106,16 @@ def jugar():
             if opcion == 1 and apuesta == numero:
                 if numero == 0:
                     ganancias= monto* 100
+                    dinero += ganancias
+                    contador_victorias +=1
+                    dinero_ganado =+ ganancias
                 else:
                  ganancias = monto * 36
                  dinero += ganancias
                  contador_victorias +=1
                  dinero_ganado =+ ganancias
                 print(f"💰 ¡Ganaste {ganancias} monedas! 💰")
+                
             elif opcion == 2 and apuesta == color:
                 ganancias = monto
                 dinero += ganancias

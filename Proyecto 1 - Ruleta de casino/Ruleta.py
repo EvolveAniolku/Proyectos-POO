@@ -1,10 +1,10 @@
-# INTENTO DE SIMULACION (RULETA DE CASINO)
-import random
+import time
 
-def giro_ruleta ():
-    giro = random.radint(0,37)
-    return (giro)
+numero = 42
+print("Generando", end="", flush=True)
 
-def juego ():
-    print('Bienvenido a la Simulacion de una Ruleta')
-    numero_apostado = input(int('Por favor, ingrese el numero por el cual desea apostar: '))
+for _ in range(3):
+    time.sleep(1)
+    print(".", end="", flush=True)
+
+print(f"\nEl número generado es: {numero}")
