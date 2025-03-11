@@ -14,7 +14,7 @@ ruleta = {
 
 contador_victorias = 0
 contador_derrotas = 0
-dinero_ganado = 0
+contador_dinero_obtenido = 0
 
 
 # Se define el mecanismo aleatorio para la ruleta usando la funcion random.randit y retornamos las variables
@@ -28,19 +28,18 @@ def girar_ruleta():
 
 def historial():
     total_partidas = contador_derrotas + contador_victorias
-    promedio_de_victorias = (contador_victorias/total_partidas) * 100 if total_partidas > 0 else 0
+    promedio_de_victorias = (contador_victorias//total_partidas) * 100 if total_partidas > 0 else 0
 
-    
     print(f"Victorias: {contador_victorias}")
     print(f"Derrotas: {contador_derrotas}")
     print(f"Promedio de victorias: {promedio_de_victorias}")
-    print(f"Dinero Ganado: {dinero_ganado}")
+    print(f"Dinero Ganado: {contador_dinero_obtenido}")
     
     
 
 def jugar():
     
-    global contador_derrotas, contador_victorias, dinero_ganado
+    global contador_derrotas, contador_victorias, contador_dinero_obtenido
     
     dinero = 100  # Dinero inicial
 
@@ -93,9 +92,10 @@ def jugar():
                 apuesta = "tercera_seccion"
             elif opcion == 7:
              historial()
-             ("🔙 Presiona Enter para volver al menu principal: ")
-             keyboard.read_event()
+             input("🔙 Presiona Enter para volver al menu principal: ")
+             
              continue
+         
             else:
                 print("⚠️ Opción no válida.")
                 continue
@@ -121,13 +121,13 @@ def jugar():
                     ganancias= monto * 100
                     dinero += ganancias
                     contador_victorias += 1
-                    dinero_ganado =+ ganancias
+                    contador_dinero_obtenido =+ ganancias
                     
                 else:   
                  ganancias = monto * 36
                  dinero += ganancias
                  contador_victorias += 1
-                 dinero_ganado += ganancias
+                 contador_dinero_obtenido += ganancias
                 print(f"💰 ¡Ganaste {ganancias} monedas! 💰",flush=True)
                 time.sleep(1)
                 
@@ -135,7 +135,7 @@ def jugar():
                 ganancias = monto
                 dinero += ganancias
                 contador_victorias += 1
-                dinero_ganado += ganancias
+                contador_dinero_obtenido += ganancias
                 print(f"💰 ¡Ganaste {ganancias} monedas! 💰",flush=True)
                 time.sleep(1)
                 
@@ -144,14 +144,14 @@ def jugar():
                 ganancias = monto
                 dinero += ganancias
                 contador_victorias += 1
-                dinero_ganado += ganancias
+                contador_dinero_obtenido += ganancias
                 print(f"💰 ¡Ganaste {ganancias} monedas! 💰",flush=True)
                 time.sleep(1)
                 
             elif opcion == 4 and 1 <= numero <= 12:
                 ganancias = monto * 5
                 contador_victorias += 1
-                dinero_ganado =+ ganancias
+                contador_dinero_obtenido =+ ganancias
                 dinero += ganancias
                 print(f"💰 ¡Ganaste {ganancias} monedas en la Primera Docena! 💰",flush=True)
                 time.sleep(1)
@@ -160,7 +160,7 @@ def jugar():
                 ganancias = monto * 5
                 contador_victorias += 1
                 dinero += ganancias
-                dinero_ganado += ganancias
+                contador_dinero_obtenido += ganancias
                 print(f"💰 ¡Ganaste {ganancias} monedas en la Segunda Docena! 💰",flush=True)
                 time.sleep(1)
                 
@@ -168,7 +168,7 @@ def jugar():
                 ganancias = monto * 5
                 contador_victorias += 1
                 dinero += ganancias
-                dinero_ganado =+ ganancias
+                contador_dinero_obtenido =+ ganancias
                 print(f"💰 ¡Ganaste {ganancias} monedas en la Tercera Docena! 💰",flush=True)
                 time.sleep(1)
             
