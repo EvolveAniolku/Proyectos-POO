@@ -101,22 +101,24 @@ def jugar():
             
             numero, color = girar_ruleta()
             print(f"🎉 La bola cayó en {numero} ({color}) 🎉",flush=True)
-            time.sleep(2)
+            time.sleep(1)
 
             # Verificar la apuesta y calcular ganancias
             if opcion == 1 and apuesta == numero:
+                
                 if numero == 0:
-                    ganancias= monto* 100
+                    ganancias= monto * 100
                     dinero += ganancias
                     contador_victorias +=1
                     dinero_ganado =+ ganancias
-                else:
+                    
+                else:   
                  ganancias = monto * 36
                  dinero += ganancias
                  contador_victorias +=1
                  dinero_ganado =+ ganancias
                 print(f"💰 ¡Ganaste {ganancias} monedas! 💰",flush=True)
-                time.sleep(2)
+                time.sleep(1)
                 
             elif opcion == 2 and apuesta == color:
                 ganancias = monto
@@ -124,7 +126,7 @@ def jugar():
                 contador_victorias +=1
                 dinero_ganado =+ ganancias
                 print(f"💰 ¡Ganaste {ganancias} monedas! 💰",flush=True)
-                time.sleep(2)
+                time.sleep(1)
                 
             elif opcion == 3 and ((apuesta == "par" and numero % 2 == 0 and numero != 0) or 
                                    (apuesta == "impar" and numero % 2 == 1)):
@@ -133,7 +135,7 @@ def jugar():
                 contador_victorias +=1
                 dinero_ganado =+ ganancias
                 print(f"💰 ¡Ganaste {ganancias} monedas! 💰",flush=True)
-                time.sleep(2)
+                time.sleep(1)
                 
             elif opcion == 4 and 1 <= numero <= 12:
                 ganancias = monto * 5
@@ -141,7 +143,7 @@ def jugar():
                 dinero_ganado =+ ganancias
                 dinero += ganancias
                 print(f"💰 ¡Ganaste {ganancias} monedas en la Primera Docena! 💰",flush=True)
-                time.sleep(2)
+                time.sleep(1)
                 
             elif opcion == 5 and 13 <= numero <= 24:
                 ganancias = monto * 5
@@ -149,7 +151,7 @@ def jugar():
                 dinero += ganancias
                 dinero_ganado =+ ganancias
                 print(f"💰 ¡Ganaste {ganancias} monedas en la Segunda Docena! 💰",flush=True)
-                time.sleep(2)
+                time.sleep(1)
                 
             elif opcion == 6 and 25 <= numero <= 36:
                 ganancias = monto * 5
@@ -157,20 +159,20 @@ def jugar():
                 dinero += ganancias
                 dinero_ganado =+ ganancias
                 print(f"💰 ¡Ganaste {ganancias} monedas en la Tercera Docena! 💰",flush=True)
-                time.sleep(2)
+                time.sleep(1)
             
             else:
                 dinero -= monto
                 contador_derrotas =+1
                 print("❌ Perdiste tu apuesta.",flush=True)
-                time.sleep(2)
+                time.sleep(1)
 
             if dinero == 0:
                 print("💸 Te has quedado sin dinero. ¡Juego terminado! 💸",flush=True)
-                time.sleep(2)
+                time.sleep(1)
                 break
 
         except ValueError:
-            print("⚠️ Entrada inválida. Intenta de nuevo.")
+            print("⚠️ Entrada inválida. Intenta de nuevo.") 
 
 jugar()
