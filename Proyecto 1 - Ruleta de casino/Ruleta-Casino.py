@@ -1,5 +1,6 @@
 import random
 import time
+import keyboard 
 
 # Se definen los colores de la ruleta segun su numero
 ruleta = {
@@ -92,7 +93,8 @@ def jugar():
                 apuesta = "tercera_seccion"
             elif opcion == 7:
              historial()
-             input("🔙 Presiona Enter para volver al menú principal: ")
+             ("🔙 Presiona Enter para volver al menu principal: ")
+             keyboard.read_event()
              continue
             else:
                 print("⚠️ Opción no válida.")
