@@ -1,6 +1,5 @@
 import random
 import time
-import keyboard 
 
 # Se definen los colores de la ruleta segun su numero
 ruleta = {
@@ -11,6 +10,7 @@ ruleta = {
     25: "rojo", 26: "negro", 27: "rojo", 28: "negro", 29: "negro", 30: "rojo", 31: "negro", 32: "rojo",
     33: "negro", 34: "rojo", 35: "negro", 36: "rojo"
 }
+# Realizamos un contador que permita contar las victorias, las derrotas y el dinero ganado.
 
 contador_victorias = 0
 contador_derrotas = 0
@@ -25,46 +25,55 @@ def girar_ruleta():
     color = ruleta[numero]
     return numero, color
 
+# Realizamos una funcion que permita acceder al historial de usuario, ademas hacemos una operacion
+# Para obtener el total de partidas y el promedio de victorias con una division.
 
 def historial():
     total_partidas = contador_derrotas + contador_victorias
-    promedio_de_victorias = (contador_victorias//total_partidas) * 100 if total_partidas > 0 else 0
+    promedio_de_victorias = (contador_victorias/total_partidas) * 100 if total_partidas > 0 else 0
 
     print(f"Victorias: {contador_victorias}")
     print(f"Derrotas: {contador_derrotas}")
-    print(f"Promedio de victorias: {promedio_de_victorias}")
+    print(f"Promedio de victorias: {promedio_de_victorias:.2f}%")
     print(f"Dinero Ganado: {contador_dinero_obtenido}")
     
     
+# Ahora vamos a la funcion inicial
 
 def jugar():
     
+    # Con la herramienta global, me permite que las variables de la parte inferior puedan ser usadas
+    # en la funcion, es decir, que las variables locales puedan ser usadas dentro de la funcion.
     global contador_derrotas, contador_victorias, contador_dinero_obtenido
     
-    dinero = 100  # Dinero inicial
+    dinero = 100  # El usuario siempre tendra esta cantidad de dinero inicial.
 
 
     print("🎰 Bienvenido a la ruleta de casino 🎰")
     print("💵 Tienes 100 monedas para apostar. 💵")
 
+# Definimos el bucle que se repetira mientras que la cantidad de dinero no sea 0, de lo contrario
+# la funcion se repetirá.
 
     while dinero > 0:
         print("\n🎲 Opciones de apuesta:")
         print("1️⃣ Número específico (Ganancia: 36:1) Numero (0) (Ganancia: 100:1) ")
-        print("2️⃣ Rojo o Negro (Ganancia: 1:1)")
-        print("3️⃣ Par o Impar (Ganancia: 1:1)")
+        print("2️⃣ Rojo o Negro (Ganancia: 2:1)")
+        print("3️⃣ Par o Impar (Ganancia: 2:1)")
         print("4️⃣ Primera Seccion (1-12) (Ganancia: 5:1)")
         print("5️⃣ Segunda Seccion (13-24) (Ganancia: 5:1)")
         print("6️⃣ Tercera Seccion (25-36) (Ganancia: 5:1)")
         print("7️⃣ Historial y promedio")
         print(f"\n💰 Tienes {dinero} monedas. 💰")
+        
+# Definimos el menú con 7 opciones principales.
 
         try:
             opcion = int(input("Elige una opción (1-7) o 0 para salir: "))
             if opcion == 0:
                 print("👋 ¡Gracias por jugar!")
                 break
-                   
+            
             apuesta = None
             if opcion == 1:
                 apuesta = int(input("🎲 Elige un número del 0 al 36: "))
@@ -114,14 +123,16 @@ def jugar():
             print(f"🎉 La bola cayó en {numero} ({color}) 🎉",flush=True)
             time.sleep(1)
 
-            # Verificar la apuesta y calcular ganancias
+# Verificamos las apuestas y calculamos las ganancias, 
+# ademas calculamos las victorias y el dinero ganado
+
             if opcion == 1 and apuesta == numero:
                 
                 if numero == 0:
                     ganancias= monto * 100
                     dinero += ganancias
                     contador_victorias += 1
-                    contador_dinero_obtenido =+ ganancias
+                    contador_dinero_obtenido += ganancias
                     
                 else:   
                  ganancias = monto * 36
@@ -140,7 +151,7 @@ def jugar():
                 time.sleep(1)
                 
             elif opcion == 3 and ((apuesta == "par" and numero % 2 == 0 and numero != 0) or 
-                                   (apuesta == "impar" and numero % 2 == 1)):
+                                (apuesta == "impar" and numero % 2 == 1)):
                 ganancias = monto
                 dinero += ganancias
                 contador_victorias += 1
@@ -151,7 +162,7 @@ def jugar():
             elif opcion == 4 and 1 <= numero <= 12:
                 ganancias = monto * 5
                 contador_victorias += 1
-                contador_dinero_obtenido =+ ganancias
+                contador_dinero_obtenido += ganancias
                 dinero += ganancias
                 print(f"💰 ¡Ganaste {ganancias} monedas en la Primera Docena! 💰",flush=True)
                 time.sleep(1)
@@ -168,13 +179,13 @@ def jugar():
                 ganancias = monto * 5
                 contador_victorias += 1
                 dinero += ganancias
-                contador_dinero_obtenido =+ ganancias
+                contador_dinero_obtenido += ganancias
                 print(f"💰 ¡Ganaste {ganancias} monedas en la Tercera Docena! 💰",flush=True)
                 time.sleep(1)
             
             else:
                 dinero -= monto
-                contador_derrotas =+ 1
+                contador_derrotas += 1
                 print("❌ Perdiste tu apuesta.",flush=True)
                 time.sleep(1)
 
