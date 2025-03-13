@@ -57,14 +57,14 @@ def jugar():
 
     while dinero > 0:
         print("\n🎲 Opciones de apuesta:")
-        print("1️⃣ Número específico (Ganancia: 36:1) Numero (0) (Ganancia: 100:1) ")
-        print("2️⃣ Rojo o Negro (Ganancia: 2:1)")
-        print("3️⃣ Par o Impar (Ganancia: 2:1)")
-        print("4️⃣ Primera Seccion (1-12) (Ganancia: 5:1)")
-        print("5️⃣ Segunda Seccion (13-24) (Ganancia: 5:1)")
-        print("6️⃣ Tercera Seccion (25-36) (Ganancia: 5:1)")
-        print("7️⃣ Historial y promedio")
-        print(f"\n💰 Tienes {dinero} monedas. 💰")
+        print("1️⃣: Número específico (Ganancia: 36:1) Numero (0) (Ganancia: 100:1) ")
+        print("2️⃣: Rojo o Negro (Ganancia: 2:1)")
+        print("3️⃣: Par o Impar (Ganancia: 2:1)")
+        print("4️⃣: Primera Seccion (1-12) (Ganancia: 5:1)")
+        print("5️⃣: Segunda Seccion (13-24) (Ganancia: 5:1)")
+        print("6️⃣: Tercera Seccion (25-36) (Ganancia: 5:1)")
+        print("7️⃣: Historial y promedio")
+        print(f"\n 🪙 Tienes {dinero} monedas. 🪙")
         
 # Definimos el menú con 7 opciones principales.
 
@@ -192,9 +192,22 @@ def jugar():
             if dinero == 0:
                 print("💸 Te has quedado sin dinero. ¡Juego terminado! 💸",flush=True)
                 time.sleep(1)
+                print("1️⃣: Nueva partida ✅")
+                print("2️⃣: Cerrar juego  ❎")
+                
+                reiniciar_partida  = int(input("Elige una opcion: "))
+                
+            if reiniciar_partida == 1:
+             
+             dinero = 100
+             
+            else:
+                print("Gracias por jugar, ¡Vuelve pronto!")
                 break
 
         except ValueError:
             print("⚠️ Entrada inválida. Intenta de nuevo.") 
 
 jugar()
+
+
