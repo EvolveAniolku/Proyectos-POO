@@ -192,8 +192,8 @@ def jugar():
             if dinero == 0:
                 print("💸 Te has quedado sin dinero. ¡Juego terminado! 💸",flush=True)
                 time.sleep(1)
-                print("1️⃣: Nueva partida ✅")
-                print("2️⃣: Cerrar juego  ❎")
+                print("1️⃣: Nueva partida")
+                print("2️⃣: Cerrar juego ")
                 
                 reiniciar_partida  = int(input("Elige una opcion: "))
                 
@@ -203,10 +203,13 @@ def jugar():
              
             else:
                 print("Gracias por jugar, ¡Vuelve pronto!")
+                
                 break
 
         except ValueError:
+            
             print("⚠️ Entrada inválida. Intenta de nuevo.") 
+    
 
 jugar()
 
